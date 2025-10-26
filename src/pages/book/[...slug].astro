@@ -28,11 +28,14 @@ const postDescription = generateDescription(currentPost, 160);
   <h1>{entry.data.title}</h1>
   <div class="subText">
     <p>
-      <a href=`/book/${entry.data.bookVer}/` data-pagefind-filter="掲載巻">{entry.data.bookVer}</a>
-      p.{entry.data.pageNo}，
-      <a href=`/book/${entry.data.kind}/` data-pagefind-filter="種類">{entry.data.kind}</a>
+      <span data-pagefind-meta="掲載巻">
+        <a href=`/book/${entry.data.bookVer}/` data-pagefind-filter="掲載巻">{entry.data.bookVer}</a>
+        p.{entry.data.pageNo}
+      </span>
+      ，
+      <a href=`/book/${entry.data.kind}/` data-pagefind-filter="種類" data-pagefind-meta="種類">{entry.data.kind}</a>
       <br />
-      著者：{entry.data.authorInitial}
+      著者：<span data-pagefind-meta="著者">{entry.data.authorInitial}</span>
     </p>
   </div>
   <section class="mdxSection">

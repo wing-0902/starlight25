@@ -21,6 +21,7 @@
 
 <style scoped lang="scss">
   .searchBox {
+    margin-top: 95px;
     .search {
       --pagefind-ui-primary: var(--a-default);
       --pagefind-ui-primary-hover: var(--a-hover);
@@ -31,7 +32,7 @@
       --pagefind-ui-border: var(--foreground);
       --pagefind-ui-tag: var(--foreground-sub);
       --pagefind-ui-border-width: 2px;
-      --pagefind-ui-border-radius: 8px;
+      --pagefind-ui-border-radius: 31px;
       --pagefind-ui-image-border-radius: 8px;
       --pagefind-ui-image-box-ratio: 3 / 2;
       --pagefind-ui-font: ZenMaru;

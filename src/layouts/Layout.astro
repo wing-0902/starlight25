@@ -8,12 +8,14 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  icon?: string;
 }
 
 const {
   noindex = false,
   title = 'The Scientific Seiko 2025 | 大阪星光学院天文部',
-  description = 'こちらは，大阪星光学院天文部の部誌「The Scientific Seiko」2025年 デジタル版です．'
+  description = 'こちらは，大阪星光学院天文部の部誌「The Scientific Seiko」2025年 デジタル版です．',
+  icon = '/hotlink-ok/stamp.png'
 } = Astro.props;
 
 const 正規URL = new URL(Astro.url.pathname, Astro.site).href;
@@ -42,6 +44,8 @@ const pagefindAttr = noindex
     <link rel="apple-touch-icon" href="/hotlink-ok/stamp.png" />
     <link rel="icon" href='/hotlink-ok/stamp.png' />
 
+    <!-- Pagefind メタデータ -->
+    <meta data-pagefind-default-meta="image[content]" content={icon} />
     <ClientRouter />
   </head>
   <body {...pagefindAttr}>
