@@ -176,6 +176,14 @@
     margin-bottom: 1em;
   }
 
+  input, textarea {
+    background: transparent;
+    color: var(--foreground);
+    border-radius: 13px;
+    border: 1px solid var(--foreground);
+    resize: none;
+  }
+
   .text, .emailarea {
     width: 100%;
     box-sizing: border-box;
