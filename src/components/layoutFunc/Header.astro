@@ -20,11 +20,18 @@ const uniqueVers = [...new Set(allVers)];
     <Image class="headerImg" src={tenmonStamp} alt="天文部スタンプ" width={40} />
     <p>The Scientific Seiko</p>
   </a>
-  <Menu
-    kinds={uniqueKinds}
-    vers={uniqueVers}
-    client:load
-  />
+  <div>
+    <ul>
+      <li><a href='/'>部誌一覧</a></li>
+      <li><a href="/search/">検索</a></li>
+      <li><a href="/form/">アンケート</a></li>
+    </ul>
+    <Menu
+      kinds={uniqueKinds}
+      vers={uniqueVers}
+      client:load
+    />
+  </div>
 </header>
 
 <style lang='scss'>
@@ -44,10 +51,40 @@ const uniqueVers = [...new Set(allVers)];
     top: 0;
     left: 0;
 
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      ul {
+        display: flex;
+        li {
+          list-style-type: none;
+          margin: auto 6px;
+          &:nth-child(1) {
+            @media (max-width: 630px) {
+              font-size: 0;
+            }
+          }
+          &:nth-child(2) {
+            @media (max-width: 260px) {
+              font-size: 0;
+            }
+          }
+          &:nth-child(3) {
+            @media (max-width: 350px) {
+              font-size: 0;
+            }
+          }
+        }
+      }
+    }
+
     a {
       display: flex;
       flex-direction: row;
+      text-decoration: none;
       &:hover {
+        text-decoration: underline;
         .headerImg {
           opacity: 0.7;
         }
@@ -57,7 +94,7 @@ const uniqueVers = [...new Set(allVers)];
         font-family: 'EpItalic';
         font-weight: 2px;
         font-size: 2em;
-        @media (max-width: 430px) {
+        @media (max-width: 559px) {
           font-size: 0;
         }
       }
