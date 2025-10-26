@@ -99,13 +99,17 @@
       width: 400px;
       max-width: 100vw;
       padding-top: 20px;
-      transform: translateX(100%);
+      transform: translateX(115%);
       transition: all 0.44s ease-in-out;
-      background-color: var(--background-transparent);
+      background-color: transparent;
+      opacity: 0;
 
       &.is-open {
         transform: translateX(0);
         opacity: 1;
+        backdrop-filter: linear-gradient(to right, blur(1px), blur(10px));
+        background-color: rgb(0, 36, 66);
+        background: linear-gradient(to right, transparent,rgba(0,36,66,0.6),rgba(0,36,66,0.7),rgba(0,36,66,0.8),rgba(0,36,66,0.85),rgba(0,36,66,0.9),rgba(0,36,66,0.95), rgb(0,36,66));
       }
     }
 
@@ -170,7 +174,6 @@
       width: 100vw;
       height: 100dvh;
       transition: all 0.44s ease;
-      opacity: 0;
     }
   }
 </style>
