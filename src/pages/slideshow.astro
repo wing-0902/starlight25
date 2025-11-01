@@ -19,7 +19,7 @@ const imageFileNames = fs.readdirSync(publicPath)
 // 2. ブラウザからアクセス可能なURLパスのリストを作成
 const imagePaths = imageFileNames.map(fileName => {
     // public フォルダの画像はサイトルート (/) からアクセス可能
-    return `${IMAGES_DIR}/${fileName}`; 
+    return `${IMAGES_DIR}/${fileName}`;
 });
 ---
 
