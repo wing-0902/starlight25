@@ -64,7 +64,7 @@
   }
 
   // 「今の時間以降」「人数3以下」で最も早い時間を返す
-  function nextAvailableSlot(threshold = 3) {
+  function nextAvailableSlot(threshold = 10) {
     const now = toMinutes(currentTimeOnHhMm);
 
     const candidates = Object.entries(slots)
@@ -83,7 +83,7 @@
 <div>
   <h4>空き枠のある時間帯</h4>
   <p>現在の時間：{currentTimeOnHhMmSs}</p>
-  <p>次の空き時間：{nextAvailableSlot(3) ?? "該当なし"}</p>
+  <p>次の空き時間：{nextAvailableSlot(10) ?? "該当なし"}</p>
   <h4>予約数一覧</h4>
   <table>
     <thead>
