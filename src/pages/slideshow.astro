@@ -1,5 +1,5 @@
 ---
-
+import SlideShow from '../components/SlideShow.svelte';
 ---
 
 <!doctype html>
@@ -11,4 +11,9 @@
     <meta name="robots" content="noindex" />
     <title>スライドショウ</title>
   </head>
+  <body>
+    <section>
+      <SlideShow client:load />
+    </section>
+  </body>
 </html>
