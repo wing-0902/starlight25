@@ -24,10 +24,12 @@
 <div>
   {#each images as image, i}
     <figure class:active={i === currentIndex}>
-      <Image 
+      <img
         src={image} 
         alt="スライドショウの画像 {i + 1}" 
-        width={800}    height={500}   loading="eager"
+        width={800}
+        height={500}
+        loading="eager"
       />
     </figure>
   {/each}
