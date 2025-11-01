@@ -10,14 +10,14 @@
     slots = snapshot.val() || {};
   });
 
-  $: newTime = "08:00";
+  let newTime = "08:00";
 
-  $: now = '';
-  $: hours = '';
-  $: minutes = '';
-  $: seconds = '';
-  $: currentTimeOnHhMm = '';
-  $: currentTimeOnHhMmSs = '';
+  let now = '';
+  let hours = '';
+  let minutes = '';
+  let seconds = '';
+  let currentTimeOnHhMm = '';
+  let currentTimeOnHhMmSs = '';
 
   function padZero(num) {
     return String(num).padStart(2, "0");
