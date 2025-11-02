@@ -74,7 +74,7 @@
 <div class='root'>
   <p>
     次の時間枠は<br/>
-    <span class='時間'>{nextSlotTime ?? "null"}</span>
+    <span class='時間'>{nextSlotTime ?? "空き枠なし"}</span>
   </p>
 </div>
 
@@ -83,6 +83,9 @@
     z-index: 1000;
     p {
       font-family: ZenMaru;
+      margin: 0;
+      line-height: 110px;
+      text-align: right;
       font-size: 60px;
       font-weight: bold;
       text-shadow: 1px 1px 5px black;
