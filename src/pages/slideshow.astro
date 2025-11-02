@@ -2,6 +2,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import SlideShow from '../components/SlideShow.svelte';
+import ShowTime from '../components/ShowTime.svelte';
 
 // public フォルダ内の画像ディレクトリ
 const IMAGES_DIR = '/images/slideshow';
@@ -37,7 +38,7 @@ const imagePaths = imageFileNames.map(fileName => {
       <SlideShow imagePaths={imagePaths} client:load />
     </section>
     <div class="timeSlot">
-
+      <ShowTime client:load />
     </div>
   </body>
 </html>
@@ -56,6 +57,7 @@ const imagePaths = imageFileNames.map(fileName => {
       position: fixed;
       right: 0;
       top: 0;
+      z-index: 1000;
     }
   }
 </style>
