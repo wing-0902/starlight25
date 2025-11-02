@@ -34,22 +34,23 @@
     /* サイズは適宜設定 */
     width: 100vw;
     height: 100dvh; 
-  }
-  figure {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out; /* ここでアニメーション（トランジション）を設定 */
-  }
-  img {
-    width: 100vw;
-    height: 100dvh;
-    object-fit: cover; /* 画像をボックスに合わせてトリミング */
-  }
-  .active {
-    opacity: 1;
+    figure {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 0;
+      width: 1vw;
+      height: 1dvh;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      &.active {
+        opacity: 1;
+      }
+      img {
+        width: 100vw;
+        height: 100dvh;
+        object-fit: cover;
+      }
+    }
   }
 </style>
