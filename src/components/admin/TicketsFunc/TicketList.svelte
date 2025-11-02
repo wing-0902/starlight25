@@ -2,38 +2,75 @@
   import { ref, onValue, set, runTransaction } from "firebase/database";
   import { database } from "../../../firebase/client";
 
+  // 変数宣言: Svelteのリアクティブな変数として扱われます
   let slots = {};
-
-  // DBから時間枠を購読
-  const slotsRef = ref(database, "reservations");
-  onValue(slotsRef, (snapshot) => {
-    slots = snapshot.val() || {};
-  });
-
   let newTime = "08:00";
 
-  let now = '';
+  let now = new Date(); // nowはsetIntervalでのみ更新
   let hours = '';
   let minutes = '';
   let seconds = '';
   let currentTimeOnHhMm = '';
   let currentTimeOnHhMmSs = '';
 
+  // DBから時間枠を購読
+  const slotsRef = ref(database, "reservations");
+  
+  // onValueコールバック内でslotsが更新されても、Svelteは自動的にDOMの更新をスケジュールしません。
+  // しかし、以下の$: slotsが変更されたことをSvelteが検知し、
+  // 依存する$: nextSlotTimeの再計算やテンプレートの更新を間接的に促します。
+  onValue(slotsRef, (snapshot) => {
+    // オブジェクト全体を再代入することで、Svelteに変更を伝えます
+    slots = snapshot.val() || {}; 
+  });
+
   function padZero(num) {
     return String(num).padStart(2, "0");
   }
 
+  // currentTimeOnHhMm と currentTimeOnHhMmSs を更新し、テンプレートの再描画をトリガーします
   function displayCurrentTime() {
-    now = new Date();
+    now = new Date(); // 変数を再代入することでSvelteが変更を検知
     hours = padZero(now.getHours());
     minutes = padZero(now.getMinutes());
     seconds = padZero(now.getSeconds());
 
+    // 派生した変数も再代入
     currentTimeOnHhMm = `${hours}:${minutes}`;
     currentTimeOnHhMmSs = `${hours}:${minutes}:${seconds}`;
   }
 
   setInterval(displayCurrentTime, 1000);
+
+  // HH:MM を数値（分単位）に変換
+  function toMinutes(timeStr) {
+    const [h, m] = timeStr.split(":").map(Number);
+    return h * 60 + m;
+  }
+
+  // --- リアクティブな宣言で nextAvailableSlot の結果を計算する ---
+  let nextSlotTime;
+  
+  // slots または currentTimeOnHhMm が変更されるたびに、このブロックが実行され、
+  // nextSlotTime が更新され、依存するDOMも更新されます。
+  $: {
+    const threshold = 10;
+    const nowInMinutes = toMinutes(currentTimeOnHhMm);
+
+    const candidates = Object.entries(slots)
+      .filter(([time, data]) => {
+        return (
+          // toMinutes(time) >= nowInMinutes: 現在時刻以降
+          toMinutes(time) >= nowInMinutes && (data.count ?? 0) <= threshold // 予約数がしきい値以下
+        );
+      })
+      .map(([time]) => time)
+      .sort((a, b) => toMinutes(a) - toMinutes(b));
+
+    nextSlotTime = candidates[0] || null; // リアクティブな変数に結果を代入
+  }
+  // -------------------------------------------------------------------
+
 
   function addSlot() {
     if (!newTime) return;
@@ -57,33 +94,12 @@
     });
   }
 
-  // HH:MM を数値（分単位）に変換
-  function toMinutes(timeStr) {
-    const [h, m] = timeStr.split(":").map(Number);
-    return h * 60 + m;
-  }
-
-  // 「今の時間以降」「人数3以下」で最も早い時間を返す
-  function nextAvailableSlot(threshold = 10) {
-    const now = toMinutes(currentTimeOnHhMm);
-
-    const candidates = Object.entries(slots)
-      .filter(([time, data]) => {
-        return (
-          toMinutes(time) >= now && (data.count ?? 0) <= threshold
-        );
-      })
-      .map(([time]) => time)
-      .sort((a, b) => toMinutes(a) - toMinutes(b));
-
-    return candidates[0] || null; // なければ null
-  }
 </script>
 
 <div>
   <h4>空き枠のある時間帯</h4>
   <p>現在の時間：{currentTimeOnHhMmSs}</p>
-  <p>次の空き時間：{nextAvailableSlot(10) ?? "該当なし"}</p>
+  <p>次の空き時間：{nextSlotTime ?? "該当なし"}</p>
   <h4>予約数一覧</h4>
   <table>
     <thead>
