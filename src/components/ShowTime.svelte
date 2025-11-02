@@ -60,7 +60,7 @@
       .filter(([time, data]) => {
         return (
           // toMinutes(time) >= nowInMinutes: 現在時刻以降
-          toMinutes(time) >= nowInMinutes && (data.count ?? 0) <= threshold // 予約数がしきい値以下
+          toMinutes(time) >= (nowInMinutes + 2) && (data.count ?? 0) <= threshold // 予約数がしきい値以下
         );
       })
       .map(([time]) => time)
