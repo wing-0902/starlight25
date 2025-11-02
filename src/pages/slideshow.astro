@@ -5,23 +5,29 @@ import SlideShow from '../components/SlideShow.svelte';
 import ShowTime from '../components/ShowTime.svelte';
 import '../styles/globals.scss';
 
-// public フォルダ内の画像ディレクトリ
 const IMAGES_DIR = '/images/slideshow';
-// サーバーサイドでのファイルシステム上の絶対パス
+
 const publicPath = path.join(process.cwd(), 'public', IMAGES_DIR);
 
-// 1. ディレクトリ内のファイル名を取得し、ソート
 const imageFileNames = fs.readdirSync(publicPath)
-    .filter(file => {
-        const ext = path.extname(file).toLowerCase();
-        return ['.jpg', '.jpeg', '.png', '.gif'].includes(ext);
-    })
-    .sort(); // ファイル名昇順でソート
+  .filter(file => {
+    const ext = path.extname(file).toLowerCase();
+    return ['.jpg', '.jpeg', '.png', '.gif'].includes(ext);
+  })
 
-// 2. ブラウザからアクセス可能なURLパスのリストを作成
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+shuffleArray(imageFileNames);
+
 const imagePaths = imageFileNames.map(fileName => {
-    // public フォルダの画像はサイトルート (/) からアクセス可能
-    return `${IMAGES_DIR}/${fileName}`;
+  return `${IMAGES_DIR}/${fileName}`;
 });
 ---
 
