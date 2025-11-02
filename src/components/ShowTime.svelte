@@ -85,8 +85,9 @@
       font-family: ZenMaru;
       font-size: 60px;
       font-weight: bold;
+      text-shadow: 1px 1px 5px black;
       .時間 {
-        color: rgb(255, 208, 0);
+        color: rgb(255, 230, 0);
         font-size: 160px;
       }
     }
