@@ -53,7 +53,7 @@
   // slots または currentTimeOnHhMm が変更されるたびに、このブロックが実行され、
   // nextSlotTime が更新され、依存するDOMも更新されます。
   $: {
-    const threshold = 10;
+    const threshold = 12;
     const nowInMinutes = toMinutes(currentTimeOnHhMm);
 
     const candidates = Object.entries(slots)
