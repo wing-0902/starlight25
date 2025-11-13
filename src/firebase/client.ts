@@ -14,7 +14,7 @@ const firebaseConfig = {
   storageBucket: "sf25-tenmon.firebasestorage.app",
   messagingSenderId: "849951922230",
   appId: "1:849951922230:web:1d30292956eebecb102097",
-  databaseURL: "https://sf25-tenmon-ticket-management.asia-southeast1.firebasedatabase.app"
+  databaseURL: "https://sf25-tenmon-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 // Initialize Firebase
