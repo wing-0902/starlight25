@@ -17,8 +17,17 @@
   // 同期
   let hydrated = false;
 
+  let aboutThis: string = '';
+
   onMount(() => {
-    
+    if ((sessionStorage.getItem('form_status') ?? '') === 'book_sending') {
+      aboutThis = 'book';
+    } else if ((sessionStorage.getItem('form_status') ?? '') === 'planetarium_sending') {
+      aboutThis = 'planetarium';
+    } else {
+      aboutThis = 'book';
+      // window.location.href='/form/';
+    }
 
     comment = sessionStorage.getItem('comment_form') ?? '';
     rate = Number(sessionStorage.getItem('rate_form'));
@@ -33,16 +42,6 @@
     sessionStorage.setItem('rate_form', rate.toString());
     sessionStorage.setItem('length_form', length);
     sessionStorage.setItem('alreadyRead_form', JSON.stringify(alreadyRead));
-  }
-
-  let aboutThis: string = '';
-  if ((sessionStorage.getItem('form_status') ?? '') === 'book_sending') {
-    aboutThis = 'book';
-  } else if ((sessionStorage.getItem('form_status') ?? '') === 'planetarium_sending') {
-    aboutThis = 'planetarium';
-  } else {
-    aboutThis = 'book';
-    // window.location.href='/form/';
   }
 
   if (aboutThis === 'book') {
