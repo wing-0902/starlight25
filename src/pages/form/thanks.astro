@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JSRequired from "../../components/ErrorMessage/JSRequired.svelte";
-import Thanks from "../../components/FormsFunc/Thanks.svelte";
+import ThanksView from "../../components/FormsFunc/Thanks.svelte";
 ---
 
 <Layout
@@ -9,7 +9,7 @@ import Thanks from "../../components/FormsFunc/Thanks.svelte";
   title='アンケート送信完了！ご協力ありがとうございました．'
 >
   <section>
-    <JSRequired client:load />
-    <Thanks client:load />
+    <JSRequired thisPage="このアンケート" client:load />
+    <ThanksView client:load />
   </section>
 </Layout>
