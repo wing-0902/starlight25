@@ -17,23 +17,29 @@
   // 同期
   let hydrated = false;
 
-  onMount(() => {
+onMount(() => {
     if ((sessionStorage.getItem('form_status') ?? '') !== '') {
       sessionStorage.clear();
     }
 
     comment = sessionStorage.getItem('comment_form') ?? '';
-    rate = Number(sessionStorage.getItem('rate_form'));
+    rate = Number(sessionStorage.getItem('rate_form')) || 0;
     length = sessionStorage.getItem('length_form') ?? '';
-    alreadyRead = JSON.parse(sessionStorage.getItem('alreadyRead_form') ?? '');
+    
+    // JSON.parseのエラー防止（空文字列やnullの場合を考慮）
+    const storedRead = sessionStorage.getItem('alreadyRead_form');
+    alreadyRead = storedRead ? JSON.parse(storedRead) : [];
 
-    hydrated = true;
-  })
+    // 3. 復元が終わってから保存を許可する
+    setTimeout(() => {
+      hydrated = true;
+    }, 100);
+  });
 
   $: if (hydrated) {
-    sessionStorage.setItem('comment_form', comment);
-    sessionStorage.setItem('rate_form', rate.toString());
-    sessionStorage.setItem('length_form', length);
+    sessionStorage.setItem('comment_form', comment || '');
+    sessionStorage.setItem('rate_form', (rate || 0).toString());
+    sessionStorage.setItem('length_form', length || '');
     sessionStorage.setItem('alreadyRead_form', JSON.stringify(alreadyRead));
   }
 
