@@ -107,6 +107,9 @@
       const result = await response.json();
 
       if (response.ok) {
+        hydrated = false;
+        const currentStatus = `${about}_sending`
+        sessionStorage.setItem('form_status', currentStatus);
         alert(result.message);
       } else {
         alert(`送信失敗: ${result.error}`);
