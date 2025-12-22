@@ -2,17 +2,40 @@
   import RequiredMark from './RequiredMark.svelte';
   import Star from './Star.svelte';
   import { Turnstile } from 'svelte-turnstile';
-
-  type IntegerFrom0To5 = 0 | 1 | 2 | 3 | 4 | 5;
+  import { onMount } from 'svelte';
 
   let about: string = '';
   let 説明文: string = '';
   let other: string = '';
 
-  let comment: string = '';
-  let rate: IntegerFrom0To5 = 0;
-  let length: string = '';
+  // フォーム内で扱う変数
+  let comment: string;
+  let rate: number;
+  let length: string;
   let alreadyRead: string[] = [];
+  
+  // 同期
+  let hydrated = false;
+
+  onMount(() => {
+    if ((sessionStorage.getItem('form_status') ?? '') !== '') {
+      sessionStorage.clear();
+    }
+
+    comment = sessionStorage.getItem('comment_form') ?? '';
+    rate = Number(sessionStorage.getItem('rate_form'));
+    length = sessionStorage.getItem('length_form') ?? '';
+    alreadyRead = JSON.parse(sessionStorage.getItem('alreadyRead_form') ?? '');
+
+    hydrated = true;
+  })
+
+  $: if (hydrated) {
+    sessionStorage.setItem('comment_form', comment);
+    sessionStorage.setItem('rate_form', rate.toString());
+    sessionStorage.setItem('length_form', length);
+    sessionStorage.setItem('alreadyRead_form', JSON.stringify(alreadyRead));
+  }
 
   export let aboutThis: string;
  
