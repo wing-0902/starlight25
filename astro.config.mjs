@@ -61,6 +61,7 @@ export default defineConfig({
         exclude: [
           {pattern: '/content/*'},
           {pattern: '/_astro/*'},
+          {pattern: '/pagefind/*'},
         ],
         include: [
           {pattern: '/api/*'},
