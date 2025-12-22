@@ -83,7 +83,7 @@
         <label for="ver3">活動報告</label><br><br>
       {:else if (aboutThis === 'planetarium')}
         <label for='length'><RequiredMark />プラネタリウムの時間（約10分）はいかがでしたか？</label><br>
-        <select id='name' bind:value={length} name='length'>
+        <select style="pointer-events: none; touch-action: none;" tabindex="-1" id='name' value={length} name='length'>
           <option value=''>選択してください</option>
           <option value='too-short'>短すぎる</option>
           <option value='short'>少し短い</option>
@@ -112,7 +112,7 @@
         <Star currentRate={rate} rateStar={4} />
       </label>
       <label>
-        <input readonly bind:group={rate} type='radio' name='rate' value={5} />
+        <input readonly type='radio' name='rate' value={5} />
         <Star currentRate={rate} rateStar={5} />
       </label>
     </fieldset>
