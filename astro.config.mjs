@@ -50,5 +50,22 @@ export default defineConfig({
     ],
   },
 
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: 'compile',
+    platformProxy: {
+      enabled: true,
+      configPath: 'wrangler.jsonc',
+    },
+    routes: {
+      extend: {
+        exclude: [
+          {pattern: '/content/*'},
+          {pattern: '/_astro/*'},
+        ],
+        include: [
+          {pattern: '/api/*'},
+        ],
+      }
+    },
+  }),
 });
