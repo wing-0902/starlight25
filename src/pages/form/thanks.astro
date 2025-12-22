@@ -1,0 +1,15 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JSRequired from "../../components/ErrorMessage/JSRequired.svelte";
+import Thanks from "../../components/FormsFunc/Thanks.svelte";
+---
+
+<Layout
+  noindex={true}
+  title='アンケート送信完了！ご協力ありがとうございました．'
+>
+  <section>
+    <JSRequired client:load />
+    <Thanks client:load />
+  </section>
+</Layout>
