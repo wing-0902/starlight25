@@ -25,8 +25,8 @@
     } else if ((sessionStorage.getItem('form_status') ?? '') === 'planetarium_sending') {
       aboutThis = 'planetarium';
     } else {
-      aboutThis = 'book';
-      // window.location.href='/form/';
+      sessionStorage.removeItem('form_status');
+      window.location.href='/form/';
     }
 
     comment = sessionStorage.getItem('comment_form') ?? '';
@@ -34,6 +34,7 @@
     length = sessionStorage.getItem('length_form') ?? '';
     alreadyRead = JSON.parse(sessionStorage.getItem('alreadyRead_form') ?? '');
 
+    sessionStorage.clear();
     hydrated = true;
   })
 
