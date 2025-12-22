@@ -75,11 +75,11 @@
       <legend>{about}について</legend>
       {#if (aboutThis === 'book')}
         <p><RequiredMark />以下の中から，お読みになった，または現在お読みになっている部誌を全て選んでください．</p>
-        <input readonly type="checkbox" id="ver1" name="alreadyRead" value="本篇・上巻" bind:group={alreadyRead}>
+        <input disabled type="checkbox" id="ver1" name="alreadyRead" value="本篇・上巻" bind:group={alreadyRead}>
         <label for="ver1">本篇・上巻</label><br>
-        <input readonly type="checkbox" id="ver2" name="alreadyRead" value="本編・下巻" bind:group={alreadyRead}>
+        <input disabled type="checkbox" id="ver2" name="alreadyRead" value="本編・下巻" bind:group={alreadyRead}>
         <label for="ver2">本篇・下巻</label><br>
-        <input readonly type="checkbox" id="ver3" name="alreadyRead" value="活動報告" bind:group={alreadyRead}>
+        <input disabled type="checkbox" id="ver3" name="alreadyRead" value="活動報告" bind:group={alreadyRead}>
         <label for="ver3">活動報告</label><br><br>
       {:else if (aboutThis === 'planetarium')}
         <label for='length'><RequiredMark />プラネタリウムの時間（約10分）はいかがでしたか？</label><br>
