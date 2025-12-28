@@ -10,5 +10,5 @@ interface RuntimeEnv {
 }
 
 export const POST: APIRoute = async ({ request, locals }) => {
-    
+  const id uuidv4();
 }
