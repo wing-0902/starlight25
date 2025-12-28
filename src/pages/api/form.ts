@@ -11,4 +11,9 @@ interface RuntimeEnv {
 
 export const POST: APIRoute = async ({ request, locals }) => {
   const id = uuidv4();
+
+  const ip =
+    request.headers.get('cf-connecting-ip') ??
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim();
+
 }
