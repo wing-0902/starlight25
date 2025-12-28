@@ -8,3 +8,7 @@ interface RuntimeEnv {
   SURVEY_ANSWERS: KVNamespace;
   TURNSTILE_SECRET_KEY: string;
 }
+
+export const POST: APIRoute = async ({ request, locals }) => {
+    
+}
