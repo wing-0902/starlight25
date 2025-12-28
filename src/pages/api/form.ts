@@ -1,6 +1,6 @@
 export const prerender = false;
 
-import { v4 as uuid } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import type { APIRoute } from 'astro';
 import type { KVNamespace } from '@cloudflare/workers-types';
 
@@ -10,5 +10,5 @@ interface RuntimeEnv {
 }
 
 export const POST: APIRoute = async ({ request, locals }) => {
-  const id uuidv4();
+  const id = uuidv4();
 }
