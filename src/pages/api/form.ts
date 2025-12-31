@@ -99,7 +99,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // Cloudflareの検証エンドポイントにリクエスト
     const verificationResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
-      body: `secret=${encodeURIComponent(typedEnv.TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${ip}&idempotency_key=${key}`,
+      body: `secret=${encodeURIComponent(typedEnv.TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteip=${ip}&idempotency_key=${key}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
