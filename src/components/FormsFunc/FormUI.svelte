@@ -17,7 +17,7 @@
   // 同期
   let hydrated = false;
 
-onMount(() => {
+  onMount(() => {
     if ((sessionStorage.getItem('form_status') ?? '') !== '') {
       sessionStorage.clear();
     }
@@ -105,7 +105,7 @@ onMount(() => {
 
     try {
       // fetch APIを使ってサーバーにPOSTリクエストを送信
-      const response = await fetch('https://form.starlight25.wing.osaka', {
+      const response = await fetch('/api/form', {
         method: 'POST',
         body: formData,
       });
