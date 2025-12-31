@@ -57,19 +57,8 @@
 </script>
 
 <div>
-  <p class='linkToOther'>
-    {other}のアンケートは
-    {#if (about === '部誌')}
-      <a href='/form/planetarium/'>こちら</a>
-    {:else if (about === 'プラネタリウム')}
-      <a href='/form/'>こちら</a>
-    {:else}
-      <a href='/error/'>エラー</a>
-    {/if}
-  </p>
-  <h2>{about}についてのアンケート</h2>
-  <p>{説明文}について，ご意見をお聞かせください．</p>
-  <p>「<RequiredMark />」がついている項目は回答必須，その他の項目は任意です．</p>
+  <h2>アンケートにご協力いただき，ありがとうございました</h2>
+  <p>以下の内容で承っております．ご確認ください．</p>
 
   <div class='form'>
     <fieldset>
@@ -123,7 +112,6 @@
       <textarea readonly placeholder='ここにコメントを入力' id='comment' name='comment' value={comment}></textarea>
     </fieldset>
   </div>
-  <p>管理ページは<a href='/admin'>こちら</a></p>
 </div>
 
 <style lang='scss'>
