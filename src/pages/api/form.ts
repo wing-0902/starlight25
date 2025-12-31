@@ -99,7 +99,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // Cloudflareの検証エンドポイントにリクエスト
     const verificationResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
-      body: `secret=${encodeURIComponent(typedEnv.TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${ip}&idempoten=${key}`,
+      body: `secret=${encodeURIComponent(typedEnv.TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken as string)}&remoteIp=${ip}&idempotency_key=${key}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -127,7 +127,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   } catch (error) {
     console.error('API処理エラー：', error);
     return new Response(JSON.stringify({ error: '予期せぬエラーが発生しました．' }), {
-      status: 405,
+      status: 500,
       headers: { 'Content-Type': 'application/json'},
     })
   }
