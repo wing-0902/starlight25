@@ -114,7 +114,7 @@
 
       if (response.ok) {
         hydrated = false;
-        const currentStatus = `${about}_sending`
+        const currentStatus = `${aboutThis}_sending`
         sessionStorage.setItem('form_status', currentStatus);
         window.location.href='/form/thanks/';
       } else {
