@@ -12,5 +12,11 @@
 	},
 	"observability": {
     "enabled": true
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SURBEY_ANSWERS",
+      "id": "f4def48694a84516a3cea69131d93f10"
+    }
+  ]
 }
